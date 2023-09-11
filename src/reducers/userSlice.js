@@ -18,11 +18,19 @@ const userSlice = createSlice({
         addUsers:{
             reducer(state,action){
                 // console.log(action.payload);
-                return {...state, userData: [...state.userData, action.payload], status:"success"};
+                return {...state, userData: [...state.userData, action.payload]};
+            }
+        },
+        deleteUsers:{
+            reducer(state,action){
+                return{
+                    ...state,
+                    userData: state.userData.filter(user => user.id != action.payload)
+                }
             }
         }
     }
 })
 
-export const {getUsers, addUsers} = userSlice.actions
+export const {getUsers, addUsers, deleteUsers} = userSlice.actions
 export default userSlice.reducer

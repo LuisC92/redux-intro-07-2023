@@ -1,9 +1,15 @@
 /* eslint-disable react/prop-types */
 import "./UserCard.css"
-
+import { useDispatch } from "react-redux";
+import { deleteUsers } from "../reducers/userSlice";
 
 const UserCard = ({user}) => {
 
+    const dispatch = useDispatch()
+
+    const deleteUser = (id)=>{
+        dispatch(deleteUsers(id))
+    }
 
   return (
     <div className="card">
@@ -13,6 +19,7 @@ const UserCard = ({user}) => {
       </p>
       <p>Email: {user.email}</p>
       <p>Website: {user.website}</p>
+      <button onClick={()=>deleteUser(user.id)}>Delete User</button>
     </div>
   );
 };
